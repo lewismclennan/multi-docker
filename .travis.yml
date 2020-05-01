@@ -1,0 +1,21 @@
+language: generic
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t lewismclennan/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run -e CI=true lewismclennan/react-test npm test
+
+after_succes:
+    - docker build -t lewismclennan/multi-client ./client
+    - docker build -t lewismclennan/multi-nginx ./nginx
+    - docker build -t lewismclennan/multi-server ./server
+    - docker build -t lewismclennan/multi-worker ./worker
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push lewismclennan/multi-client
+    - docker push lewismclennan/multi-nginx
+    - docker push lewismclennan/multi-server
+    - docker push lewismclennan/multi-worker
