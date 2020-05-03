@@ -3,28 +3,28 @@
     "containerDefinitions": [
         {
             "name": "client",
-            "image": "lewismclenann/multi-client",
+            "image": "lewismclennan/multi-client",
             "hostname": "client",
             "memory": 128,
             "essential": false
         },
         {
             "name": "server",
-            "image": "lewismclenann/multi-server",
+            "image": "lewismclennan/multi-server",
             "hostname": "api",
             "memory": 128,
             "essential": false
         },
         {
             "name": "worker",
-            "image": "lewismclenann/multi-worker",
+            "image": "lewismclennan/multi-worker",
             "hostname": "worker",
             "memory": 128,
             "essential": false
         },
         {
             "name": "nginx",
-            "image": "lewismclenann/multi-nginx",
+            "image": "lewismclennan/multi-nginx",
             "hostname": "nginx",
             "memory": 128,
             "essential": true,
